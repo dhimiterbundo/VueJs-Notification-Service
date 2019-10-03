@@ -23,6 +23,25 @@ import Notifications from 'vue-notification/dist/ssr.js'
 
 Vue.use(Notifications)
 ```
+in App.vue file add this component at the end 
+``` javascript 
+        <notifications position="top right" width="35%">
+      <template slot="body" slot-scope="props">
+        <div class="vue-notification notification"
+             :class="[props.item.type]" @click="popupClicked(props)">
+          <a class="title">{{props.item.title}}</a>
+          <div class="subtitle" v-html="props.item.text"></div>
+        </div>
+      </template>
+    </notifications>
+```
+
+Also add this method into methods section
+``` javascript
+ popupClicked(notificationInstance) {
+        notificationInstance.close();
+      }
+```
 
 Here is the notificationservice.js file:
 
